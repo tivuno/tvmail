@@ -208,7 +208,6 @@ class Mail extends MailCore
                 }
             }
         } else {
-
             $addr = trim($to);
             if (!Validate::isEmail($addr)) {
                 parent::dieOrLog($die, 'Error: invalid e-mail address');
@@ -436,7 +435,6 @@ class Mail extends MailCore
                 $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
                 $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
             ) {
-                //Tvshipping::debug();
                 $message->Body = $templateHtml;
             }
 
