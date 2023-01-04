@@ -1,5 +1,4 @@
 <?php
-
 /**
  * E-mail SMTP PrestaShop module ”Samos”
  *
