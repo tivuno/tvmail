@@ -1,0 +1,14 @@
+{
+    "name": "tivuno/tvmail",
+    "authors": [
+        {
+            "name": "tivuno.com",
+            "email": "hi@tivuno.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "phpmailer/phpmailer": "^6.7"
+    },
+    "type": "prestashop-module"
+}

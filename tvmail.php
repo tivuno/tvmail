@@ -1,4 +1,5 @@
 <?php
+
 /**
  * E-mail SMTP PrestaShop module ”Samos”
  *
@@ -6,6 +7,9 @@
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    include_once __DIR__ . '/vendor/autoload.php';
+}
 class Tvmail extends Module
 {
     public function __construct()
