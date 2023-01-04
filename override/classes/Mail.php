@@ -139,7 +139,6 @@ class Mail extends MailCore
             $configuration['PS_MAIL_SMTP_PORT'] = 'default';
         }
 
-
         if (!isset($from) || !Validate::isEmail($from)) {
             $from = $configuration['PS_SHOP_EMAIL'];
         }
@@ -154,7 +153,6 @@ class Mail extends MailCore
         if (!Validate::isMailName($fromName)) {
             $fromName = null;
         }
-
 
         if (!is_array($to) && !Validate::isEmail($to)) {
             parent::dieOrLog($die, 'Error: parameter "to" is corrupted');
@@ -184,7 +182,6 @@ class Mail extends MailCore
 
             return false;
         }
-
 
         $message = new PHPMailer(true);
         $message->isSMTP();
@@ -227,9 +224,7 @@ class Mail extends MailCore
             }
         }
 
-
         try {
-
             $iso = Language::getIsoById((int)$idLang);
             $isoDefault = Language::getIsoById((int)Configuration::get('PS_LANG_DEFAULT'));
             $isoArray = [];
@@ -332,14 +327,12 @@ class Mail extends MailCore
                 true
             );
 
-
             $subject = '[' . strip_tags($configuration['PS_SHOP_NAME']) . '] ' . $subject;
             $message->Subject = $subject;
 
             if (!($replyTo && Validate::isEmail($replyTo))) {
                 $replyTo = $from;
             }
-
 
             if (
                 false !== Configuration::get('PS_LOGO_MAIL') &&

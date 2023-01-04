@@ -7,7 +7,6 @@
  * @copyright 2018 - 2022 © tivuno web & marketing solutions
  * @license   Basic license | One license per (sub)domain
  */
-
 class Tvmail extends Module
 {
     public function __construct()
