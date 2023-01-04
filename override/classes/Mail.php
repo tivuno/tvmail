@@ -1,5 +1,4 @@
 <?php
-
 /**
  * E-mail SMTP PrestaShop module ”Samos”
  *
@@ -8,7 +7,6 @@
  * @license   Basic license | One license per (sub)domain
  */
 
-use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail extends MailCore
@@ -52,7 +50,8 @@ class Mail extends MailCore
         $bcc = null,
         $replyTo = null,
         $replyToName = null
-    ) {
+    ): bool
+    {
         if (!$idShop) {
             $idShop = Context::getContext()->shop->id;
         }
