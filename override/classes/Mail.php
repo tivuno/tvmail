@@ -6,7 +6,6 @@
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
