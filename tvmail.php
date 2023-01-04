@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PrestaShop mail SMTP module ”Samos”
  *
@@ -7,13 +8,10 @@
  * @license   Basic license | One license per (sub)domain
  */
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 class Tvmail extends Module
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->name = 'tvmail';
         $this->tab = 'emailing';
         $this->version = '1.0.0';

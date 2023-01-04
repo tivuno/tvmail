@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PrestaShop mail SMTP module ”Samos”
  *
@@ -8,7 +9,6 @@
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require _PS_ROOT_DIR_ . '/vendor/autoload.php';
@@ -58,7 +58,6 @@ class Mail extends MailCore
         if (!$idShop) {
             $idShop = Context::getContext()->shop->id;
         }
-        
         $hookBeforeEmailResult = Hook::exec(
             'actionEmailSendBefore',
             [
@@ -81,7 +80,7 @@ class Mail extends MailCore
             null,
             true
         );
-        
+
         if ($hookBeforeEmailResult === null) {
             $keepGoing = false;
         } else {
@@ -93,15 +92,15 @@ class Mail extends MailCore
                 true
             );
         }
-        
+
         if (!$keepGoing) {
             return true;
         }
-        
+
         if (is_numeric($idShop) && $idShop) {
             $shop = new Shop((int)$idShop);
         }
-        
+
         $configuration = Configuration::getMultiple(
             [
                 'PS_SHOP_EMAIL',
@@ -128,64 +127,65 @@ class Mail extends MailCore
                 'template_vars' => &$templateVars,
             ]
         );
-        
-        if (!isset($configuration['PS_MAIL_SMTP_ENCRYPTION']) ||
+
+        if (
+            !isset($configuration['PS_MAIL_SMTP_ENCRYPTION']) ||
             Tools::strtolower($configuration['PS_MAIL_SMTP_ENCRYPTION']) === 'off'
         ) {
             $configuration['PS_MAIL_SMTP_ENCRYPTION'] = false;
         }
-        
+
         if (!isset($configuration['PS_MAIL_SMTP_PORT'])) {
             $configuration['PS_MAIL_SMTP_PORT'] = 'default';
         }
-        
-        
+
+
         if (!isset($from) || !Validate::isEmail($from)) {
             $from = $configuration['PS_SHOP_EMAIL'];
         }
-        
+
         if (!Validate::isEmail($from)) {
             $from = null;
         }
         if (!isset($fromName) || !Validate::isMailName($fromName)) {
             $fromName = $configuration['PS_SHOP_NAME'];
         }
-        
+
         if (!Validate::isMailName($fromName)) {
             $fromName = null;
         }
-        
-        
+
+
         if (!is_array($to) && !Validate::isEmail($to)) {
             parent::dieOrLog($die, 'Error: parameter "to" is corrupted');
-            
+
             return false;
         }
         if (null !== $bcc && !is_array($bcc) && !Validate::isEmail($bcc)) {
             parent::dieOrLog($die, 'Error: parameter "bcc" is corrupted');
             $bcc = null;
         }
-        
+
         if (!is_array($templateVars)) {
             $templateVars = [];
         }
         if (is_string($toName) && !empty($toName) && !Validate::isMailName($toName)) {
             $toName = null;
         }
-        
+
         if (!Validate::isTplName($template)) {
             parent::dieOrLog($die, 'Error: invalid e-mail template');
-            
+
             return false;
         }
-        
+
         if (!Validate::isMailSubject($subject)) {
             parent::dieOrLog($die, 'Error: invalid e-mail subject');
-            
+
             return false;
         }
-        
-        
+
+
         $message = new PHPMailer(true);
         $message->isSMTP();
         $message->Host = Configuration::get('PS_MAIL_SERVER');
@@ -197,13 +197,13 @@ class Mail extends MailCore
         $message->Port = Configuration::get('PS_MAIL_SMTP_PORT');
         $message->setFrom('hi@tivuno.com', 'Clients service');
         $message->isHTML(true);
-        
+
         if (is_array($to)) {
             foreach ($to as $addr) {
                 $addr = trim($addr);
                 if (!Validate::isEmail($addr)) {
                     parent::dieOrLog($die, 'Error: invalid e-mail address');
-                    
+
                     return false;
                 } else {
                     try {
@@ -213,11 +213,11 @@ class Mail extends MailCore
                 }
             }
         } else {
-            
+
             $addr = trim($to);
             if (!Validate::isEmail($addr)) {
                 parent::dieOrLog($die, 'Error: invalid e-mail address');
-                
+
                 return false;
             } else {
                 try {
@@ -226,40 +226,43 @@ class Mail extends MailCore
                 }
             }
         }
-        
-        
+
+
         try {
-            
+
             $iso = Language::getIsoById((int)$idLang);
             $isoDefault = Language::getIsoById((int)Configuration::get('PS_LANG_DEFAULT'));
             $isoArray = [];
             if ($iso) {
                 $isoArray[] = $iso;
             }
-            
+
             if ($isoDefault && $iso !== $isoDefault) {
                 $isoArray[] = $isoDefault;
             }
-            
+
             if (!in_array('en', $isoArray)) {
                 $isoArray[] = 'en';
             }
-            
+
             $moduleName = false;
-            if (preg_match('#' . $shop->physical_uri . 'modules/#',
-                    str_replace(DIRECTORY_SEPARATOR, '/', $templatePath)) &&
+            if (
+                preg_match(
+                    '#' . $shop->physical_uri . 'modules/#',
+                    str_replace(DIRECTORY_SEPARATOR, '/', $templatePath)
+                ) &&
                 preg_match('#modules/([a-z0-9_-]+)/#ui', str_replace(DIRECTORY_SEPARATOR, '/', $templatePath), $res)
             ) {
                 $moduleName = $res[1];
             }
-            
+
             foreach ($isoArray as $isoCode) {
                 $isoTemplate = $isoCode . '/' . $template;
                 $templatePath = self::getTemplateBasePath($isoTemplate, $moduleName, $shop->theme);
-                
-                if (!file_exists($templatePath . $isoTemplate . '.txt') &&
-                    (
-                        $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
+
+                if (
+                    !file_exists($templatePath . $isoTemplate . '.txt') &&
+                    ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
                         $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
                     )
                 ) {
@@ -270,9 +273,9 @@ class Mail extends MailCore
                             'Admin.Advparameters.Notification'
                         )
                     );
-                } elseif (!file_exists($templatePath . $isoTemplate . '.html') &&
-                    (
-                        $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
+                } elseif (
+                    !file_exists($templatePath . $isoTemplate . '.html') &&
+                    ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
                         $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
                     )
                 ) {
@@ -285,17 +288,17 @@ class Mail extends MailCore
                     );
                 } else {
                     $templatePathExists = true;
-                    
+
                     break;
                 }
             }
-            
+
             if (empty($templatePathExists)) {
                 parent::dieOrLog($die, 'Error - The following e-mail template is missing: %s', [$template]);
-                
+
                 return false;
             }
-            
+
             $templateHtml = '';
             $templateTxt = '';
             Hook::exec(
@@ -328,17 +331,18 @@ class Mail extends MailCore
                 null,
                 true
             );
-            
-            
+
+
             $subject = '[' . strip_tags($configuration['PS_SHOP_NAME']) . '] ' . $subject;
             $message->Subject = $subject;
-            
+
             if (!($replyTo && Validate::isEmail($replyTo))) {
                 $replyTo = $from;
             }
-            
-            
-            if (false !== Configuration::get('PS_LOGO_MAIL') &&
+
+
+            if (
+                false !== Configuration::get('PS_LOGO_MAIL') &&
                 file_exists(_PS_IMG_DIR_ . Configuration::get('PS_LOGO_MAIL', null, null, $idShop))
             ) {
                 $logo = _PS_IMG_DIR_ . Configuration::get('PS_LOGO_MAIL', null, null, $idShop);
@@ -350,15 +354,15 @@ class Mail extends MailCore
                 }
             }
             ShopUrl::cacheMainDomainForShop((int)$idShop);
-            
+
             if (isset($logo)) {
                 $templateVars['{shop_logo}'] = $message->AddEmbeddedImage($logo, 'mail_logo');
             }
-            
+
             if ((Context::getContext()->link instanceof Link) === false) {
                 Context::getContext()->link = new Link();
             }
-            
+
             $templateVars['{shop_name}'] = Tools::safeOutput($configuration['PS_SHOP_NAME']);
             $templateVars['{shop_url}'] = Context::getContext()->link->getPageLink(
                 'index',
@@ -414,43 +418,45 @@ class Mail extends MailCore
                 true
             );
             $templateVars = array_merge($templateVars, $extraTemplateVars);
-            
+
             // Some strange issue
             unset($templateVars['{guest_tracking_url}']);
-            
+
             $templateHtml = str_replace(
                 array_keys($templateVars),
                 array_values($templateVars),
                 $templateHtml
             );
-            
+
             $templateTxt = str_replace(
                 array_keys($templateVars),
                 array_values($templateVars),
                 $templateTxt
             );
-            
-            if ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
+
+            if (
+                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
                 $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
             ) {
                 $message->AltBody = $templateTxt;
             }
-            
-            if ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
+
+            if (
+                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
                 $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
             ) {
                 //Tvshipping::debug();
                 $message->Body = $templateHtml;
             }
-            
+
             Hook::exec('actionMailAlterMessageBeforeSend', [
                 'message' => &$message,
             ]);
-            
+
             $send = $message->send();
-            
+
             ShopUrl::resetMainDomainCache();
-            
+
             if ($send && Configuration::get('PS_LOG_EMAILS')) {
                 $mail = new Mail();
                 $mail->template = Tools::substr($template, 0, 62);
@@ -474,7 +480,7 @@ class Mail extends MailCore
                     $mail->add();
                 }
             }
-            
+
             return $send;
         } catch (Exception $e) {
             PrestaShopLogger::addLog(
@@ -483,7 +489,7 @@ class Mail extends MailCore
                 null,
                 'PHPMailer'
             );
-            
+
             return false;
         }
     }
