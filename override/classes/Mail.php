@@ -250,11 +250,12 @@ class Mail extends MailCore
 
             if (isset($shop)) {
                 $shop_theme = $shop->theme;
-            }else{
+            } else {
                 // Default theme
                 $shop_theme = 'classic';
             }
 
+            $isoTemplate = '';
             foreach ($isoArray as $isoCode) {
                 $isoTemplate = $isoCode . '/' . $template;
                 $templatePath = self::getTemplateBasePath($isoTemplate, $moduleName, $shop_theme);
