@@ -96,7 +96,7 @@ class Mail extends MailCore
         }
 
         if (is_numeric($idShop) && $idShop) {
-            $shop = new Shop((int)$idShop);
+            $shop = new Shop((int) $idShop);
         }
 
         $configuration = Configuration::getMultiple(
@@ -222,8 +222,8 @@ class Mail extends MailCore
         }
 
         try {
-            $iso = Language::getIsoById((int)$idLang);
-            $isoDefault = Language::getIsoById((int)Configuration::get('PS_LANG_DEFAULT'));
+            $iso = Language::getIsoById((int) $idLang);
+            $isoDefault = Language::getIsoById((int) Configuration::get('PS_LANG_DEFAULT'));
             $isoArray = [];
             if ($iso) {
                 $isoArray[] = $iso;
@@ -299,7 +299,7 @@ class Mail extends MailCore
                     'template' => $template,
                     'template_html' => &$templateHtml,
                     'template_txt' => &$templateTxt,
-                    'id_lang' => (int)$idLang,
+                    'id_lang' => (int) $idLang,
                 ],
                 null,
                 true
@@ -318,7 +318,7 @@ class Mail extends MailCore
                     'template' => $template,
                     'template_html' => &$templateHtml,
                     'template_txt' => &$templateTxt,
-                    'id_lang' => (int)$idLang,
+                    'id_lang' => (int) $idLang,
                 ],
                 null,
                 true
@@ -343,7 +343,7 @@ class Mail extends MailCore
                     $templateVars['{shop_logo}'] = '';
                 }
             }
-            ShopUrl::cacheMainDomainForShop((int)$idShop);
+            ShopUrl::cacheMainDomainForShop((int) $idShop);
 
             if (isset($logo)) {
                 $templateVars['{shop_logo}'] = $message->AddEmbeddedImage($logo, 'mail_logo');
@@ -402,7 +402,7 @@ class Mail extends MailCore
                     'template' => $template,
                     'template_vars' => $templateVars,
                     'extra_template_vars' => &$extraTemplateVars,
-                    'id_lang' => (int)$idLang,
+                    'id_lang' => (int) $idLang,
                 ],
                 null,
                 true
@@ -450,7 +450,7 @@ class Mail extends MailCore
                 $mail = new Mail();
                 $mail->template = Tools::substr($template, 0, 62);
                 $mail->subject = Tools::substr($message->Subject, 0, 255);
-                $mail->id_lang = (int)$idLang;
+                $mail->id_lang = (int) $idLang;
                 $recipientsTo = $message->getAllRecipientAddresses();
                 $recipientsCc = [];
                 $recipientsBcc = [];
