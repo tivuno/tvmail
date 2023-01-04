@@ -1,7 +1,6 @@
 <?php
-
 /**
- * PrestaShop mail SMTP module ”Samos”
+ * E-mail SMTP PrestaShop module ”Samos”
  *
  * @author    tivuno.com
  * @copyright 2018 - 2023 © tivuno.com

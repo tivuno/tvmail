@@ -1,12 +1,12 @@
 <?php
-
 /**
- * PrestaShop mail SMTP module ”Samos”
+ * E-mail SMTP PrestaShop module ”Samos”
  *
- * @author    tivuno web & marketing solutions
- * @copyright 2018 - 2022 © tivuno web & marketing solutions
+ * @author    tivuno.com
+ * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
+
 class Tvmail extends Module
 {
     public function __construct()
