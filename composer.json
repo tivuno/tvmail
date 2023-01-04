@@ -10,5 +10,8 @@
         "php": ">=7.1.0",
         "phpmailer/phpmailer": "^6.7"
     },
+    "config": {
+        "prepend-autoloader": false
+    },
     "type": "prestashop-module"
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * E-mail SMTP PrestaShop module ”Samos”
  *
@@ -6,10 +7,9 @@
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
+
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-
-require _PS_ROOT_DIR_ . '/vendor/autoload.php';
 
 class Mail extends MailCore
 {
@@ -232,7 +232,8 @@ class Mail extends MailCore
             }
 
             $moduleName = false;
-            if (isset($shop) &&
+            if (
+                isset($shop) &&
                 preg_match(
                     '#' . $shop->physical_uri . 'modules/#',
                     str_replace(DIRECTORY_SEPARATOR, '/', $templatePath)
