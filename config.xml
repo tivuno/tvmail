@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>tvmail</name>
+    <displayName><![CDATA[E-mail SMTP PrestaShop module ”Samos”]]></displayName>
+    <version><![CDATA[0.0.1]]></version>
+    <description><![CDATA[Send mails even from localhost. No more lost sales.]]></description>
+    <author><![CDATA[tivuno.com]]></author>
+    <tab><![CDATA[emailing]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
+    <limited_countries></limited_countries>
+</module>
