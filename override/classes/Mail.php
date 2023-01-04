@@ -6,8 +6,8 @@
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 require _PS_ROOT_DIR_ . '/vendor/autoload.php';
 
@@ -203,7 +203,7 @@ class Mail extends MailCore
                 } else {
                     try {
                         $message->addAddress($addr);
-                    } catch (Exception $e) {
+                    } catch (PHPMailer\PHPMailer\Exception $e) {
                     }
                 }
             }
@@ -216,7 +216,7 @@ class Mail extends MailCore
             } else {
                 try {
                     $message->addAddress($addr);
-                } catch (Exception $e) {
+                } catch (PHPMailer\PHPMailer\Exception $e) {
                 }
             }
         }
@@ -238,7 +238,7 @@ class Mail extends MailCore
             }
 
             $moduleName = false;
-            if (
+            if (isset($shop) &&
                 preg_match(
                     '#' . $shop->physical_uri . 'modules/#',
                     str_replace(DIRECTORY_SEPARATOR, '/', $templatePath)
@@ -248,9 +248,16 @@ class Mail extends MailCore
                 $moduleName = $res[1];
             }
 
+            if (isset($shop)) {
+                $shop_theme = $shop->theme;
+            }else{
+                // Default theme
+                $shop_theme = 'classic';
+            }
+
             foreach ($isoArray as $isoCode) {
                 $isoTemplate = $isoCode . '/' . $template;
-                $templatePath = self::getTemplateBasePath($isoTemplate, $moduleName, $shop->theme);
+                $templatePath = self::getTemplateBasePath($isoTemplate, $moduleName, $shop_theme);
 
                 if (
                     !file_exists($templatePath . $isoTemplate . '.txt') &&
@@ -471,7 +478,7 @@ class Mail extends MailCore
             }
 
             return $send;
-        } catch (Exception $e) {
+        } catch (PHPMailer\PHPMailer\Exception $e) {
             PrestaShopLogger::addLog(
                 'Error: ' . $e->getMessage(),
                 3,
