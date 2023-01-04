@@ -6,7 +6,7 @@
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
  */
-use PHPMailer\PHPMailer\Exception;
+use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 require _PS_ROOT_DIR_ . '/vendor/autoload.php';
@@ -201,10 +201,7 @@ class Mail extends MailCore
 
                     return false;
                 } else {
-                    try {
-                        $message->addAddress($addr);
-                    } catch (PHPMailer\PHPMailer\Exception $e) {
-                    }
+                    $message->addAddress($addr);
                 }
             }
         } else {
@@ -214,10 +211,7 @@ class Mail extends MailCore
 
                 return false;
             } else {
-                try {
-                    $message->addAddress($addr);
-                } catch (PHPMailer\PHPMailer\Exception $e) {
-                }
+                $message->addAddress($addr);
             }
         }
 
@@ -479,7 +473,7 @@ class Mail extends MailCore
             }
 
             return $send;
-        } catch (PHPMailer\PHPMailer\Exception $e) {
+        } catch (Exception $e) {
             PrestaShopLogger::addLog(
                 'Error: ' . $e->getMessage(),
                 3,
