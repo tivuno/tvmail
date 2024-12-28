@@ -1,7 +1,6 @@
 <?php
 /**
  * E-mail SMTP PrestaShop module ”Samos”
- *
  * @author    tivuno.com
  * @copyright 2018 - 2023 © tivuno.com
  * @license   Basic license | One license per (sub)domain
@@ -50,8 +49,7 @@ class Mail extends MailCore
         $bcc = null,
         $replyTo = null,
         $replyToName = null
-    ): bool
-    {
+    ): bool {
         if (!$idShop) {
             $idShop = Context::getContext()->shop->id;
         }
@@ -483,5 +481,28 @@ class Mail extends MailCore
 
             return false;
         }
+    }
+
+    public static function sendMailTest($smtpChecked, $smtpServer, $content, $subject, $type, $to, $from, $smtpLogin, $smtpPassword, $smtpPort, $smtpEncryption, bool $dkimEnable = false, string $dkimKey = '', string $dkimDomain = '', string $dkimSelector = '')
+    {
+        $mail = new PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host = $smtpServer;
+        $mail->SMTPAuth = true;
+        $mail->Username = $smtpLogin;
+        $mail->Password = $smtpPassword;
+        $mail->SMTPSecure = $smtpEncryption;
+        $mail->Port = $smtpPort;
+        $mail->setFrom($from, $smtpLogin);
+        $mail->addAddress($to);
+        $mail->Subject = $subject;
+        $mail->Body = 'TEST ' . rand();
+        $mail->AltBody = 'TEST ' . rand();
+        if ($mail->send()) {
+            return true;
+        }
+
+        return false;
     }
 }
