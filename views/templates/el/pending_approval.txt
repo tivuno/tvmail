@@ -1,0 +1,13 @@
+ 
+
+{shop_url}
+
+Γεια σου {firstname} {lastname},
+
+Αυτό είναι ένα δοκιμαστικό email από το κατάστημά σας.
+
+Αν μπορείς να το διαβάσεις αυτό, τότε η δοκιμή ήταν επιτυχής!
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

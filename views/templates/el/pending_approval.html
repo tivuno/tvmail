@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{shop_name} Αναμένεται έγκριση</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        /* cyrillic-ext */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/cyrillic_ext.woff2) format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
+        /* cyrillic */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/cyrillic.woff2) format('woff2');
+            unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+
+        /* greek-ext */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/greek_ext.woff2) format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+
+        /* greek */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/greek.woff2) format('woff2');
+            unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+        }
+
+        /* latin-ext */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/latin_ext.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face
+        {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            src: url(http://localhost/projects/tvimport/modules/tvcore/views/fonts/ubuntu/latin.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        a.hyperlink
+        {
+            text-decoration: none;
+            color: #3ca55c;
+            font-weight: bold;
+        }
+
+        #outlook a
+        {
+            padding: 0;
+        }
+
+        body
+        {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td
+        {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img
+        {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* New css */
+        .container
+        {
+            display: flow-root;
+            margin: 0px auto;
+            max-width: 604px;
+        }
+
+        p
+        {
+            line-height: 1.5rem;
+            margin: 0;
+        }
+
+        footer
+        {
+            display: flow-root;
+            margin: 1.5rem 0;
+        }
+
+        .inline > *
+        {
+            display: inline-block;
+            line-height: 1.5rem;
+        }
+
+        .left
+        {
+            float: left;
+        }
+
+        .right
+        {
+            float: right;
+            display: inline-flex;
+        }
+
+        footer img
+        {
+            width: 24px;
+            height: fit-content;
+            margin: 0 .5rem;
+        }
+    </style>
+    <!--[if !mso]><!-->
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu);
+    </style>
+    <!--<![endif]-->
+    <style type="text/css">
+        @media only screen and (min-width: 480px)
+        {
+            .mj-column-per-100
+            {
+                width: 100% !important;
+                max-width: 100%;
+            }
+
+            .mj-column-px-25
+            {
+                width: 25px !important;
+                max-width: 25px;
+            }
+        }
+    </style>
+    <style media="screen and (min-width:480px)">
+        .moz-text-html .mj-column-per-100
+        {
+            width: 100% !important;
+            max-width: 100%;
+        }
+
+        .moz-text-html .mj-column-px-25
+        {
+            width: 25px !important;
+            max-width: 25px;
+        }
+    </style>
+    <style type="text/css">
+    </style>
+    <style type="text/css">
+        .shadow
+        {
+            box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .label
+        {
+            font-weight: 700;
+        }
+
+        .warning
+        {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        a
+        {
+            color: #25b9d7;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        a.light
+        {
+            font-weight: 400;
+        }
+
+        span.strong
+        {
+            font-weight: 600;
+        }
+
+        @media only screen and (max-width: 480px)
+        {
+
+            body,
+            .no-bg
+            {
+                background-color: #ffffff !important;
+            }
+
+            .left p
+            {
+                text-align: left;
+                display: inline-block
+            }
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#eeeeee"
+      style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; word-spacing: normal; background-color: #eeeeee;">
+<div bgcolor="#eeeeee" style="background-color:#eeeeee;">
+    <!--[if mso | IE]>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:604px;"
+           width="604">
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div style="margin:0px auto;max-width:604px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"
+               width="100%">
+            <tbody>
+            <tr>
+                <td align="center"
+                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; direction: ltr; font-size: 0px; padding: 0; text-align: center;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="" style="vertical-align:top;width:604px;"><![endif]-->
+                    <div align="left"
+                         class="mj-column-per-100 mj-outlook-group-fix"
+                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"
+                         width="100%">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top;"
+                               width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0px; word-break: break-word;">
+                                    <div height="40" style="height:40px;line-height:40px;"> </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]></td></tr></table>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="shadow-outlook wrapper-container-outlook"
+       role="presentation" style="width:604px;" width="604" bgcolor="#ffffff">
+    <tr>
+        <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div bgcolor="#ffffff"
+         class="shadow wrapper-container"
+         style="box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1); background: #ffffff; background-color: #ffffff; margin: 0px auto; border-radius: 4px; max-width: 604px;">
+        <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0"
+               role="presentation"
+               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; background-color: #ffffff; width: 100%; border-radius: 4px;"
+               width="100%">
+            <tbody>
+            <tr>
+                <td align="center"
+                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; direction: ltr; font-size: 0px; padding: 0 0 30px; text-align: center;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"><![endif]-->
+                    <!-- Logo position -->
+                    <!--[if mso | IE]>
+                    <tr>
+                        <td class="" width="604px">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" class=""
+                                   role="presentation" style="width:604px;" width="604">
+                                <tr>
+                                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                    <div style="margin:0px auto;max-width:604px;">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"
+                               width="100%">
+                            <tbody>
+                            <tr>
+                                <td align="center"
+                                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; direction: ltr; font-size: 0px; padding: 0 25px; text-align: center;">
+                                    <!--[if mso | IE]>
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="" style="vertical-align:top;width:554px;"><![endif]-->
+                                    <div align="left"
+                                         class="mj-column-per-100 mj-outlook-group-fix"
+                                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"
+                                         width="100%">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                                               width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; padding: 0;">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                           role="presentation"
+                                                           style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                                                           width="100%">
+                                                        <tbody>
+                                                        <!-- TITLE BEGINING -->
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0px; padding: 10px 25px; padding-top: 0; padding-bottom: 20px; word-break: break-word;">
+                                                                <div align="left"
+                                                                     style="font-size:20px;font-weight:600;line-height:25px;text-align:left;color:#363a41;">
+                                                                    Γεια σου {firstname} {lastname},
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- TITLE ENDING -->
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+                    <!-- BORDER BEGINING -->
+                    <!--[if mso | IE]>
+                    <tr>
+                        <td class="" width="604px">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" class=""
+                                   role="presentation" style="width:604px;" width="604">
+                                <tr>
+                                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                    <div style="margin:0px auto;max-width:604px;">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"
+                               width="100%">
+                            <tbody>
+                            <tr>
+                                <td align="left"
+                                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; direction: ltr; font-size: 0px; padding: 0 50px 40px; text-align: left;">
+                                    <!--[if mso | IE]>
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="" style="vertical-align:top;width:25px;"><![endif]-->
+                                    <div align="left"
+                                         class="mj-column-px-25 mj-outlook-group-fix"
+                                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"
+                                         width="100%">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top;"
+                                               width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td align="center" class="left"
+                                                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0px; padding: 10px 25px; padding-top: 0; padding-right: 0; padding-left: 0; word-break: break-word;">
+                                                    <p style="display: block; border-top: solid 3px #505050; font-size: 1px; margin: 0px auto; width: 25px;"
+                                                       width="25">
+                                                    </p>
+                                                    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 3px #505050;font-size:1px;margin:0px auto;width:25px;" role="presentation" width="25px" ><tr><td style="height:0;line-height:0;"> &nbsp;
+                  </td></tr></table><![endif]-->
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+                    <!-- BORDER ENDING -->
+                    <!-- ONLY TEXT BEGINING -->
+                    <!--[if mso | IE]>
+                    <tr>
+                        <td class="" width="604px">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" class=""
+                                   role="presentation" style="width:604px;" width="604">
+                                <tr>
+                                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                    <div style="margin:0px auto;max-width:604px;">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"
+                               width="100%">
+                            <tbody>
+                            <tr>
+                                <td align="center"
+                                    style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; direction: ltr; font-size: 0px; padding: 0 25px; text-align: center;">
+                                    <!--[if mso | IE]>
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="" style="vertical-align:top;width:554px;"><![endif]-->
+                                    <div align="left"
+                                         class="mj-column-per-100 mj-outlook-group-fix"
+                                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"
+                                         width="100%">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                               style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                                               width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; padding: 0;">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                           role="presentation"
+                                                           style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                                                           width="100%">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0px; padding: 10px 25px; padding-top: 0; padding-bottom: 20px; word-break: break-word;">
+                                                                <div align="left"
+                                                                     style="font-size:14px;line-height:25px;text-align:left;color:#363a41;">
+                                                                    Αυτό είναι ένα δοκιμαστικό <span
+                                                                        class="label"
+                                                                        style="font-weight: 700;">email</span> από το
+                                                                    κατάστημά σας.
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0px; padding: 10px 25px; padding-top: 0; padding-bottom: 20px; word-break: break-word;">
+                                                                <div align="left"
+                                                                     style="font-size:14px;line-height:25px;text-align:left;color:#363a41;">
+                                                                    Αν μπορείς να το διαβάσεις αυτό, τότε
+                                                                    η δοκιμή ήταν επιτυχής!
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+                    <!-- ONLY TEXT ENDING -->
+
+
+                    <!--[if mso | IE]></table><![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]></td></tr></table><![endif]-->
+    {mail_footer}
+</div>
+</body>
+
+</html>

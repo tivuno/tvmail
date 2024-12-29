@@ -1,0 +1,8 @@
+{
+  "actionEmailSendBefore": "",
+  "sendMailAlterTemplateVars": "",
+  "actionEmailAddBeforeContent": "",
+  "actionEmailAddAfterContent": "",
+  "actionGetExtraMailTemplateVars": "",
+  "actionMailAlterMessageBeforeSend": ""
+}

@@ -1,11 +1,13 @@
 <?php
 /**
- * E-mail SMTP PrestaShop module ”Samos”
- * @author    tivuno.com
- * @copyright 2018 - 2023 © tivuno.com
- * @license   Basic license | One license per (sub)domain
+ * E-mail SMTP PrestaShop module - Samos
+ * @author    tivuno.com <hi@tivuno.com>
+ * @copyright 2018 - 2025 © tivuno.com
+ * @license   https://tivuno.com/blog/nea-tis-epicheirisis/apli-adeia
  */
-
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail extends MailCore
@@ -123,9 +125,8 @@ class Mail extends MailCore
             ]
         );
 
-        if (
-            !isset($configuration['PS_MAIL_SMTP_ENCRYPTION']) ||
-            Tools::strtolower($configuration['PS_MAIL_SMTP_ENCRYPTION']) === 'off'
+        if (!isset($configuration['PS_MAIL_SMTP_ENCRYPTION'])
+            || Tools::strtolower($configuration['PS_MAIL_SMTP_ENCRYPTION']) === 'off'
         ) {
             $configuration['PS_MAIL_SMTP_ENCRYPTION'] = false;
         }
@@ -229,13 +230,14 @@ class Mail extends MailCore
             }
 
             $moduleName = false;
-            if (
-                isset($shop) &&
-                preg_match(
+            if (isset($shop)
+                && preg_match(
                     '#' . $shop->physical_uri . 'modules/#',
-                    str_replace(DIRECTORY_SEPARATOR, '/', $templatePath)
-                ) &&
-                preg_match('#modules/([a-z0-9_-]+)/#ui', str_replace(DIRECTORY_SEPARATOR, '/', $templatePath), $res)
+                    str_replace(DIRECTORY_SEPARATOR, '/', $templatePath))
+                && preg_match(
+                    '#modules/([a-z0-9_-]+)/#ui',
+                    str_replace(DIRECTORY_SEPARATOR, '/', $templatePath),
+                    $res)
             ) {
                 $moduleName = $res[1];
             }
@@ -252,10 +254,9 @@ class Mail extends MailCore
                 $isoTemplate = $isoCode . '/' . $template;
                 $templatePath = self::getTemplateBasePath($isoTemplate, $moduleName, $shop_theme);
 
-                if (
-                    !file_exists($templatePath . $isoTemplate . '.txt') &&
-                    ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
-                        $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
+                if (!file_exists($templatePath . $isoTemplate . '.txt')
+                    && ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH
+                        || $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
                     )
                 ) {
                     PrestaShopLogger::addLog(
@@ -265,10 +266,9 @@ class Mail extends MailCore
                             'Admin.Advparameters.Notification'
                         )
                     );
-                } elseif (
-                    !file_exists($templatePath . $isoTemplate . '.html') &&
-                    ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
-                        $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
+                } elseif (!file_exists($templatePath . $isoTemplate . '.html')
+                    && ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH
+                        || $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
                     )
                 ) {
                     PrestaShopLogger::addLog(
@@ -331,9 +331,8 @@ class Mail extends MailCore
                 $replyTo = $from;
             }
 
-            if (
-                false !== Configuration::get('PS_LOGO_MAIL') &&
-                file_exists(_PS_IMG_DIR_ . Configuration::get('PS_LOGO_MAIL', null, null, $idShop))
+            if (false !== Configuration::get('PS_LOGO_MAIL')
+                && file_exists(_PS_IMG_DIR_ . Configuration::get('PS_LOGO_MAIL', null, null, $idShop))
             ) {
                 $logo = _PS_IMG_DIR_ . Configuration::get('PS_LOGO_MAIL', null, null, $idShop);
             } else {
@@ -424,16 +423,14 @@ class Mail extends MailCore
                 $templateTxt
             );
 
-            if (
-                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
-                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
+            if ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH
+                || $configuration['PS_MAIL_TYPE'] == Mail::TYPE_TEXT
             ) {
                 $message->AltBody = $templateTxt;
             }
 
-            if (
-                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH ||
-                $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
+            if ($configuration['PS_MAIL_TYPE'] == Mail::TYPE_BOTH
+                || $configuration['PS_MAIL_TYPE'] == Mail::TYPE_HTML
             ) {
                 $message->Body = $templateHtml;
             }
